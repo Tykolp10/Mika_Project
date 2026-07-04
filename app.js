@@ -1254,43 +1254,62 @@ function updateDashboardLogs() {
 // --- 3. UI Visibility Controller ---
 
 function updateUIVisibility() {
-    const btnToggle = document.getElementById('btn-admin-toggle');
     const lockedCard = document.getElementById('drafts-locked-state');
     const workspace = document.querySelector('.drafts-workspace');
     const dashboard = document.getElementById('admin-dashboard');
+    const navDraf = document.getElementById('nav-draf-link');
+    const navDashboard = document.getElementById('nav-dashboard-link');
 
-    if (isAdmin) {
-        // Switch toggle to Admin Mode
-        btnToggle.className = 'admin-badge admin-mode-active';
-        btnToggle.querySelector('.badge-text').textContent = 'Admin';
-        btnToggle.setAttribute('title', 'Keluar dari Mode Admin');
-        // SVG Lock Open
-        btnToggle.querySelector('.lock-icon').innerHTML = '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path>';
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasAdminParam = urlParams.get('admin') === 'true' || window.location.hash === '#admin';
+    const hasActiveSession = sessionStorage.getItem('venus_admin_session') === 'true';
+    const isAdminRoute = hasAdminParam || hasActiveSession;
 
-        // Reveal panels
-        lockedCard.style.display = 'none';
-        workspace.style.display = 'flex';
-        dashboard.style.display = 'block';
+    if (isAdminRoute) {
+        // Admin route is active (either via URL or active session)
+        // Show navigation links
+        if (navDraf) navDraf.style.display = 'inline-block';
+        
+        // Show drafts section
+        const drafSection = document.getElementById('draf-section');
+        if (drafSection) drafSection.style.display = 'block';
 
-        // Update security status indicator
-        document.getElementById('stat-security-status').textContent = 'Terbuka (Sesi)';
-        document.getElementById('stat-security-status').style.color = '#ef4444';
+        if (isAdmin) {
+            // Authenticated Admin
+            if (navDashboard) navDashboard.style.display = 'inline-block';
+            if (lockedCard) lockedCard.style.display = 'none';
+            if (workspace) workspace.style.display = 'flex';
+            if (dashboard) dashboard.style.display = 'block';
 
-        // Update dashboard content
-        updateDashboardStats();
-        updateDashboardLogs();
+            // Update security status indicator
+            const secStatus = document.getElementById('stat-security-status');
+            if (secStatus) {
+                secStatus.textContent = 'Terbuka (Sesi)';
+                secStatus.style.color = '#ef4444';
+            }
+
+            // Update dashboard content
+            updateDashboardStats();
+            updateDashboardLogs();
+        } else {
+            // Admin Route but NOT authenticated yet
+            if (navDashboard) navDashboard.style.display = 'none';
+            if (lockedCard) lockedCard.style.display = 'block';
+            if (workspace) workspace.style.display = 'none';
+            if (dashboard) dashboard.style.display = 'none';
+        }
     } else {
-        // Switch toggle to Viewer Mode
-        btnToggle.className = 'admin-badge viewer-mode';
-        btnToggle.querySelector('.badge-text').textContent = 'Viewer';
-        btnToggle.setAttribute('title', 'Masuk ke Mode Admin');
-        // SVG Lock Closed
-        btnToggle.querySelector('.lock-icon').innerHTML = '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>';
-
-        // Lock/Hide panels
-        lockedCard.style.display = 'block';
-        workspace.style.display = 'none';
-        dashboard.style.display = 'none';
+        // Standard Viewer Route (No admin params or active session)
+        isAdmin = false;
+        
+        // Hide nav links
+        if (navDraf) navDraf.style.display = 'none';
+        if (navDashboard) navDashboard.style.display = 'none';
+        
+        // Hide sections
+        const drafSection = document.getElementById('draf-section');
+        if (drafSection) drafSection.style.display = 'none';
+        if (dashboard) dashboard.style.display = 'none';
     }
 }
 
@@ -1455,6 +1474,7 @@ function verifyPIN() {
     if (storedPINEncoded === enteredPINEncoded) {
         // Auth Success!
         isAdmin = true;
+        sessionStorage.setItem('venus_admin_session', 'true');
         failCount = 0;
         localStorage.removeItem('venus_lockout_end');
         
@@ -1550,6 +1570,7 @@ function submitRecoveryAnswer() {
     if (entered === stored && stored !== "") {
         // Recovery success!
         isAdmin = true;
+        sessionStorage.setItem('venus_admin_session', 'true');
         closePinAuthModal();
         updateUIVisibility();
         
@@ -1623,9 +1644,13 @@ function restartSimulationAndAutolock() {
         autolockInterval = setInterval(() => {
             if (isAdmin && (Date.now() - lastActivityTime > 300000)) { // 5 minutes
                 isAdmin = false;
+                sessionStorage.removeItem('venus_admin_session');
                 updateUIVisibility();
                 showToast("Sesi Admin terkunci otomatis karena tidak ada aktivitas.", "heart-broken");
                 logVisitorActivity("Sesi administrator terkunci otomatis (timeout 5 menit).");
+                setTimeout(() => {
+                    window.location.href = window.location.pathname;
+                }, 1500);
             }
         }, 15000); // Check every 15s
     }
@@ -1693,9 +1718,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize visitor analytics
     initVisitorStats();
 
-    // Set role visibility on start
+    // Set role visibility on start based on URL parameters and active session storage
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasAdminParam = urlParams.get('admin') === 'true' || window.location.hash === '#admin';
+    const hasActiveSession = sessionStorage.getItem('venus_admin_session') === 'true';
+    
+    if (hasActiveSession) {
+        isAdmin = true;
+    }
+    
     updateUIVisibility();
     restartSimulationAndAutolock();
+
+    // Auto-prompt login if admin parameter is set but not logged in
+    if (hasAdminParam && !isAdmin) {
+        const configured = localStorage.getItem('venus_admin_configured') === 'true';
+        if (!configured) {
+            openSecurityWizard();
+        } else {
+            openPinAuthModal();
+        }
+    }
 
     // Set active link highlighting on scroll
     const sections = document.querySelectorAll('section');
@@ -1726,24 +1769,31 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('keypress', recordActivity);
     window.addEventListener('click', recordActivity);
 
-    // Role switcher in Header
-    document.getElementById('btn-admin-toggle').addEventListener('click', () => {
-        if (isAdmin) {
-            // Log out
-            isAdmin = false;
-            updateUIVisibility();
-            showToast("Keluar dari Mode Admin. Menjadi Viewer kembali.");
-            logVisitorActivity("Admin keluar secara manual.");
-        } else {
-            // Check setup
-            const configured = localStorage.getItem('venus_admin_configured') === 'true';
-            if (!configured) {
-                openSecurityWizard();
+    // Optional Role switcher in Header (safe wrapped if button exists)
+    const adminToggleBtn = document.getElementById('btn-admin-toggle');
+    if (adminToggleBtn) {
+        adminToggleBtn.addEventListener('click', () => {
+            if (isAdmin) {
+                // Log out
+                isAdmin = false;
+                sessionStorage.removeItem('venus_admin_session');
+                updateUIVisibility();
+                showToast("Keluar dari Mode Admin. Menjadi Viewer kembali.");
+                logVisitorActivity("Admin keluar secara manual.");
+                setTimeout(() => {
+                    window.location.href = window.location.pathname;
+                }, 800);
             } else {
-                openPinAuthModal();
+                // Check setup
+                const configured = localStorage.getItem('venus_admin_configured') === 'true';
+                if (!configured) {
+                    openSecurityWizard();
+                } else {
+                    openPinAuthModal();
+                }
             }
-        }
-    });
+        });
+    }
 
     // Lock Screen "Masuk Sebagai Admin" button
     document.getElementById('btn-unlock-drafts').addEventListener('click', () => {
@@ -1808,6 +1858,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
 
         isAdmin = true;
+        sessionStorage.setItem('venus_admin_session', 'true');
         updateUIVisibility();
         showToast("Otoritas Admin aktif. Selamat berkarya!", "check");
         restartSimulationAndAutolock();
@@ -1857,9 +1908,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logout
     document.getElementById('btn-admin-logout').addEventListener('click', () => {
         isAdmin = false;
+        sessionStorage.removeItem('venus_admin_session');
         updateUIVisibility();
-        showToast("Sesi Admin ditutup.");
+        showToast("Sesi Admin ditutup. Mengalihkan ke mode Viewer...");
         logVisitorActivity("Admin keluar dari dashboard.");
+        setTimeout(() => {
+            window.location.href = window.location.pathname;
+        }, 800);
     });
 
     // Simulate traffic trigger

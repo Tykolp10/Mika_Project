@@ -32,15 +32,12 @@
         <nav>
             <a href="#home" class="active">Beranda</a>
             <a href="#puisi">Karya Siap Siar</a>
-            <a href="#draf-section">Draf Catatan</a>
+            <a href="#draf-section" id="nav-draf-link" style="display: none;">Draf Catatan</a>
+            <a href="#admin-dashboard" id="nav-dashboard-link" style="display: none;">Dashboard</a>
             <a href="#coretan">Coretan Rasa</a>
             <a href="#tentang">Tentang</a>
         </nav>
         <div class="header-actions">
-            <button id="btn-admin-toggle" class="admin-badge viewer-mode" title="Masuk ke Mode Admin">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lock-icon" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                <span class="badge-text">Viewer</span>
-            </button>
             <button id="theme-indicator" class="theme-badge" title="Tema Hitam Maroon">
                 <span class="badge-dot"></span>
                 <span class="badge-text">Tema: Sunyi</span>
@@ -56,7 +53,7 @@
             <p class="hero-desc">Kumpulan sajak perjalanan hidup, kerinduan, dan rasa yang diarsipkan dengan penuh kehangatan dalam warna merah maroon. Selamat datang di draf-draf pemikiran terdalamku.</p>
             <div class="hero-buttons">
                 <a href="#puisi" class="btn-primary">Karya Siap Siar</a>
-                <a href="#draf-section" class="btn-secondary">Lihat Draf Saya</a>
+                <a href="#coretan" class="btn-secondary">Buat Kartu Sajak</a>
             </div>
         </div>
         <div class="hero-visual">
@@ -137,7 +134,7 @@
     </section>
 
     <!-- Poetry Drafts Workspace (DRAF CATATAN) -->
-    <section id="draf-section" class="drafts-section">
+    <section id="draf-section" class="drafts-section" style="display: none;">
         <div class="section-header">
             <span class="section-tag">Draf Catatan Venus</span>
             <h2>Ruang Redaksi Sunyi</h2>
