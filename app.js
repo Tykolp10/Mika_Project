@@ -1318,7 +1318,6 @@ function updateUIVisibility() {
 function openSecurityWizard() {
     wizardCurrentStep = 1;
     wizardInputPIN = "";
-    document.getElementById('wizard-pin-input').value = "";
     document.getElementById('wizard-answer-input').value = "";
     document.getElementById('wizard-question-select').selectedIndex = 0;
     
