@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venus — Galeri Rasa, Romansa & Perjalanan Hidup</title>
+    <meta name="description" content="Arsip puisi, sajak, dan kutipan seputar romansa, perjalanan hidup, dan draf tulisan milik Venus. Didesain elegan dengan nuansa hitam maroon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-default">
+    <!-- Fullscreen Intro Overlay -->
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="intro-content">
+            <img src="assets/entrance_rose.png" alt="Rose" class="intro-rose">
+            <h1 class="intro-title">Venus</h1>
+            <span class="intro-subtitle font-alt">Arsip Puisi & Rasa</span>
+        </div>
+    </div>
+
+    <!-- Background ambient glows -->
+    <div id="glow-container" class="glow-container">
+        <div class="glow-sphere glow-1"></div>
+        <div class="glow-sphere glow-2"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="logo">Venus <span>Archive</span></div>
+        <nav>
+            <a href="#home" class="active">Beranda</a>
+            <a href="#puisi">Karya Siap Siar</a>
+            <a href="#draf-section">Draf Catatan</a>
+            <a href="#coretan">Coretan Rasa</a>
+            <a href="#tentang">Tentang</a>
+        </nav>
+        <div class="header-actions">
+            <button id="btn-admin-toggle" class="admin-badge viewer-mode" title="Masuk ke Mode Admin">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lock-icon" style="margin-right: 4px; display: inline-block; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span class="badge-text">Viewer</span>
+            </button>
+            <button id="theme-indicator" class="theme-badge" title="Tema Hitam Maroon">
+                <span class="badge-dot"></span>
+                <span class="badge-text">Tema: Sunyi</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-subtitle">Ruang Kontemplasi & Romansa</span>
+            <h1 class="hero-title">Goresan Sunyi<br>Milik <span>Venus</span></h1>
+            <p class="hero-desc">Kumpulan sajak perjalanan hidup, kerinduan, dan rasa yang diarsipkan dengan penuh kehangatan dalam warna merah maroon. Selamat datang di draf-draf pemikiran terdalamku.</p>
+            <div class="hero-buttons">
+                <a href="#puisi" class="btn-primary">Karya Siap Siar</a>
+                <a href="#draf-section" class="btn-secondary">Lihat Draf Saya</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card-glow"></div>
+            <div class="hero-glass-box">
+                <div class="glass-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="glass-body">
+                    <span class="poem-tag font-alt">romansa</span>
+                    <p class="poem-snippet">"Ada yang lebih sunyi dibanding malam tanpa bintang; yaitu ingatan tentang matamu yang tak lagi menatapku hangat."</p>
+                    <span class="poem-author">— Catatan Venus</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Quotes Section -->
+    <section id="kutipan" class="quotes-section">
+        <div class="section-header">
+            <span class="section-tag">Inspirasi Hari Ini</span>
+            <h2>Kutipan Harian</h2>
+            <p>Refleksi singkat penenang jiwa yang riuh</p>
+        </div>
+        
+        <div class="quote-wrapper">
+            <div class="quote-card">
+                <span class="quote-icon">“</span>
+                <div class="quote-body">
+                    <p id="quote-text" class="quote-text">Sebab pada akhirnya, kita hanyalah sekumpulan ingatan yang perlahan memudar di ingatan orang lain.</p>
+                    <span id="quote-author" class="quote-author">— Anonim</span>
+                </div>
+                <div class="quote-footer">
+                    <button id="btn-copy-quote" class="icon-btn" title="Salin Kutipan">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <span class="tooltip">Salin</span>
+                    </button>
+                    <button id="btn-next-quote" class="btn-secondary-sm">Kutipan Lainnya</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poetry Gallery Section (KARYA SIAP SIAR) -->
+    <section id="puisi" class="poetry-section">
+        <div class="section-header">
+            <span class="section-tag">Karya Siap Siar</span>
+            <h2>Antologi Puisi</h2>
+            <p>Bait-bait terpilih yang siap dikontemplasikan</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+            <div class="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="search-input" placeholder="Cari judul sajak atau bait kata...">
+            </div>
+            <div class="filter-pills" role="tablist">
+                <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">Semua</button>
+                <button class="filter-pill" data-filter="perjalanan" role="tab" aria-selected="false">Perjalanan Hidup</button>
+                <button class="filter-pill" data-filter="romansa" role="tab" aria-selected="false">Romansa</button>
+                <button class="filter-pill" data-filter="favorit" role="tab" aria-selected="false">Favorit Saya</button>
+            </div>
+        </div>
+
+        <div id="poetry-grid" class="poetry-grid">
+            <!-- Cards will be dynamically generated by app.js -->
+        </div>
+        
+        <!-- Empty State for Search/Filter -->
+        <div id="poetry-empty-state" class="empty-state" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.5 7.5"></path><path d="M14 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path></svg>
+            <h3>Bait Tidak Ditemukan</h3>
+            <p>Coba gunakan kata kunci lain atau pilih kategori yang berbeda.</p>
+        </div>
+    </section>
+
+    <!-- Poetry Drafts Workspace (DRAF CATATAN) -->
+    <section id="draf-section" class="drafts-section">
+        <div class="section-header">
+            <span class="section-tag">Draf Catatan Venus</span>
+            <h2>Ruang Redaksi Sunyi</h2>
+            <p>Tempat menulis, menyunting, dan menyiarkan bait-bait mentahmu</p>
+        </div>
+
+        <!-- Locked State Placeholder for Viewer -->
+        <div id="drafts-locked-state" class="drafts-locked-card">
+            <div class="lock-card-noise"></div>
+            <div class="lock-card-glow"></div>
+            <div class="lock-illustration">
+                <div class="lock-shield">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lock-svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                </div>
+            </div>
+            <h3>Ruang Redaksi Terkunci</h3>
+            <p>Workspace draf catatan sunyi ini diproteksi oleh kunci keamanan untuk mencegah kebocoran karya sebelum disiarkan dan scam oleh pihak tak dikenal.</p>
+            <button id="btn-unlock-drafts" class="btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                Masuk Sebagai Admin
+            </button>
+        </div>
+
+        <div class="drafts-workspace" style="display: none;">
+            <!-- Left Pane: Drafts List -->
+            <div class="drafts-sidebar">
+                <div class="sidebar-header">
+                    <h3>Draf Tersimpan</h3>
+                    <button id="btn-new-draft" class="btn-primary-sm" title="Buat Draf Baru">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        Tulis Draf
+                    </button>
+                </div>
+                <div id="drafts-list" class="drafts-list">
+                    <!-- Dynamic draft item list -->
+                </div>
+            </div>
+
+            <!-- Right Pane: Typewriter Editor -->
+            <div class="drafts-editor">
+                <div class="editor-noise"></div>
+                <div class="editor-header">
+                    <input type="text" id="draft-title-input" class="editor-title" placeholder="Judul Draf Sunyi..." disabled>
+                    <span id="draft-last-saved" class="draft-timestamp font-alt">Pilih atau buat draf baru</span>
+                </div>
+                <div class="editor-body">
+                    <textarea id="draft-body-input" class="editor-textarea" placeholder="Tuliskan bait kata-kata di sini..." disabled></textarea>
+                </div>
+                <div class="editor-footer">
+                    <button id="btn-delete-draft" class="btn-danger" disabled>Hapus Draf</button>
+                    <div class="editor-actions-right">
+                        <button id="btn-save-draft" class="btn-secondary" disabled>Simpan Draf</button>
+                        <button id="btn-publish-draft" class="btn-primary" disabled>Siarkan Karya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard Section -->
+    <section id="admin-dashboard" class="admin-dashboard-section" style="display: none;">
+        <div class="section-header">
+            <span class="section-tag">Dasbor Analisis</span>
+            <h2>Statistik & Aktivitas</h2>
+            <p>Memantau pembaca setia dan mengamankan integritas arsip</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <!-- Stats Row -->
+            <div class="dashboard-stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Pengunjung</span>
+                        <h3 id="stat-total-visitors">0</h3>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Sajak Dibaca</span>
+                        <h3 id="stat-total-reads">0</h3>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Draf Tersimpan</span>
+                        <h3 id="stat-total-drafts">0</h3>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #22c55e;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">Status Keamanan</span>
+                        <h3 id="stat-security-status" style="color: #22c55e;">Terproteksi</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Details Grid: Chart & Terminal Log -->
+            <div class="dashboard-details-row">
+                <!-- Popularity Chart (CSS bars) -->
+                <div class="dashboard-box chart-box">
+                    <h3>Popularitas Antologi Puisi</h3>
+                    <p class="box-desc">Metrik relative-reads per judul karya</p>
+                    <div id="popularity-chart-container" class="chart-list">
+                        <!-- Dynamic bar list -->
+                    </div>
+                </div>
+                
+                <!-- Terminal Event Log -->
+                <div class="dashboard-box log-box">
+                    <div class="log-header">
+                        <h3>Aktivitas Pengunjung</h3>
+                        <button id="btn-clear-logs" class="btn-secondary-sm">Bersihkan Log</button>
+                    </div>
+                    <p class="box-desc">Event kunjungan & pembacaan real-time</p>
+                    <div id="terminal-log" class="terminal-body">
+                        <!-- Monospace log entries -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Actions Block -->
+            <div class="dashboard-actions-card">
+                <h3>Kendali Sistem Administrator</h3>
+                <div class="action-buttons-group">
+                    <button id="btn-reset-pin" class="btn-secondary">Setel Ulang PIN Keamanan</button>
+                    <button id="btn-simulate-traffic" class="btn-secondary">Simulasikan Kunjungan</button>
+                    <button id="btn-admin-logout" class="btn-danger">Keluar Mode Admin</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poetry Canvas / Sharing Card Section -->
+    <section id="coretan" class="canvas-section">
+        <div class="section-header">
+            <span class="section-tag">Coretan Rasa</span>
+            <h2>Buat Kartu Sajakmu</h2>
+            <p>Tulis perasaanmu saat ini, pilih estetikanya, dan bagikan ke media sosial</p>
+        </div>
+
+        <div class="canvas-container">
+            <!-- Canvas Preview Card -->
+            <div class="canvas-preview-wrapper">
+                <div id="sajak-card-preview" class="sajak-card-canvas theme-sunset">
+                    <div class="card-noise"></div>
+                    <div class="card-glow-element"></div>
+                    <div class="card-inner">
+                        <div class="card-watermark">Venus Archive</div>
+                        <div class="card-quote-mark">“</div>
+                        <div class="card-text-content">
+                            <textarea id="canvas-text" maxlength="250" placeholder="Ketik bait sajak atau kutipanmu di sini... (maksimal 250 karakter)"></textarea>
+                        </div>
+                        <div class="card-author-wrapper">
+                            <span class="author-prefix">—</span>
+                            <input type="text" id="canvas-author" placeholder="Venus" value="Venus">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Canvas Controls -->
+            <div class="canvas-controls">
+                <div class="control-group">
+                    <h3>Pilih Gaya Estetika</h3>
+                    <div class="theme-selector">
+                        <button class="theme-btn active theme-sunset-btn" data-theme="theme-sunset" title="Merona Maroon">
+                            <span></span>
+                        </button>
+                        <button class="theme-btn theme-midnight-btn" data-theme="theme-midnight" title="Glow Sunyi">
+                            <span></span>
+                        </button>
+                        <button class="theme-btn theme-forest-btn" data-theme="theme-forest" title="Lembah Malam">
+                            <span></span>
+                        </button>
+                        <button class="theme-btn theme-rose-btn" data-theme="theme-rose" title="Bunga Mati">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Unduh & Bagikan</h3>
+                    <p class="control-desc font-alt">Kartu akan diekspor sebagai gambar dengan resolusi tinggi, siap dibagikan ke Instagram, WhatsApp, atau Pinterest.</p>
+                    <button id="btn-export-canvas" class="btn-primary btn-full-width">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Unduh Kartu Sajak
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="about-section">
+        <div class="about-grid">
+            <div class="about-visual">
+                <div class="visual-circle"></div>
+                <div class="visual-card">
+                    <span class="visual-tag">Pemilik Arsip</span>
+                    <h3>Sajak Venus</h3>
+                    <p>Merayakan kerentanan jiwa dan luka-luka yang diabadikan menjadi keindahan.</p>
+                </div>
+            </div>
+            <div class="about-content">
+                <span class="section-tag">Di Balik Sajak</span>
+                <h2>Mengabadikan Rasa Melalui Aksara</h2>
+                <p>Halo, saya adalah **Venus**. Selamat datang di sudut kecil internet tempat kata-kata dihargai secara mendalam. Website ini dirancang sebagai arsip digital untuk menampung perjalanan emosi saya: tentang patah hati yang diibaratkan bunga mawar layu berguguran, langkah kaki menyusuri jalan hidup yang terdokumentasi dalam buku harian usang, dan kontemplasi malam hari.</p>
+                <p>Di sini, saya membagikan karya yang sudah siap dipublikasikan sekaligus menuangkan coretan mentah pada ruang editor draf pribadi saya.</p>
+                <div class="about-meta">
+                    <div class="meta-item">
+                        <span class="meta-number">Venus</span>
+                        <span class="meta-label">Penulis</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-number">100%</span>
+                        <span class="meta-label">Dengan Rasa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Venus <span>Poetry</span></div>
+            <p>Arsip digital puisi & kutipan perjalanan rasa milik Venus.</p>
+            <div class="footer-links">
+                <a href="#home">Beranda</a>
+                <a href="#puisi">Karya</a>
+                <a href="#draf-section">Draf</a>
+                <a href="#coretan">Coretan</a>
+                <a href="#tentang">Tentang</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Venus Archive. Dibuat dengan rintik sunyi dan mawar layu.</p>
+        </div>
+    </footer>
+
+    <!-- Immersive Side-Drawer Reader (Poem View) -->
+    <div id="poem-drawer" class="drawer-overlay" aria-hidden="true">
+        <div class="drawer-container">
+            <!-- Drawer Header -->
+            <div class="drawer-header">
+                <div class="drawer-header-left">
+                    <span id="drawer-category" class="poem-tag font-alt">Kategori</span>
+                    <button id="btn-favorite-drawer" class="icon-btn-favorite" title="Tambahkan ke Favorit">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                </div>
+                <button id="btn-close-drawer" class="drawer-close" aria-label="Tutup Detail Puisi">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <!-- Drawer Scrollable Content -->
+            <div class="drawer-body">
+                <span id="drawer-date" class="drawer-date">28 Juni 2026</span>
+                <h2 id="drawer-title" class="drawer-title">Menemukanmu di Batas Mimpi</h2>
+                
+                <div class="drawer-divider"></div>
+                
+                <!-- Font Controls -->
+                <div class="font-controls">
+                    <span class="control-label">Ukuran Teks</span>
+                    <button id="font-decrease" class="font-btn" title="Perkecil Ukuran Huruf">A-</button>
+                    <button id="font-increase" class="font-btn" title="Perbesar Ukuran Huruf">A+</button>
+                </div>
+
+                <div id="drawer-text" class="drawer-poem-content">
+                    <!-- Text will be injected -->
+                </div>
+            </div>
+
+            <!-- Drawer Footer: Relaxing Soundscape Panel -->
+            <div class="drawer-footer">
+                <div class="sound-control-panel">
+                    <div class="sound-info">
+                        <button id="btn-toggle-sound" class="sound-play-btn" title="Putar Musik Latar Hujan">
+                            <!-- Play Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-play"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            <!-- Pause Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sound-icon-pause" style="display:none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                        </button>
+                        <div class="sound-text">
+                            <span class="sound-title">Latar Suasana Hujan & Rintik</span>
+                            <span id="sound-status" class="sound-status font-alt">Nonaktif</span>
+                        </div>
+                        <!-- Bouncing CSS Music Bars -->
+                        <div id="sound-visualizer" class="sound-visualizer">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    <div class="volume-slider-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <input type="range" id="sound-volume" min="0" max="1" step="0.05" value="0.5" aria-label="Volume Latar Hujan">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for category selection when publishing a draft -->
+    <div id="publish-modal" class="modal-overlay" aria-hidden="true" style="display:none;">
+        <div class="publish-modal-content">
+            <h3>Siarkan Karya Ke Antologi</h3>
+            <p>Pilih kategori yang sesuai untuk mempublikasikan puisi ini:</p>
+            <div class="publish-category-options">
+                <button class="pub-opt-btn" data-category="romansa">
+                    <img src="assets/withered_rose.png" alt="Rose">
+                    <span>Romansa (Mawar Layu)</span>
+                </button>
+                <button class="pub-opt-btn" data-category="perjalanan">
+                    <img src="assets/old_diaries.png" alt="Diaries">
+                    <span>Perjalanan Hidup (Diary Usang)</span>
+                </button>
+            </div>
+            <div class="publish-modal-footer">
+                <button id="btn-cancel-publish" class="btn-secondary">Batal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Setup Wizard Modal -->
+    <div id="security-wizard-modal" class="modal-overlay" aria-hidden="true" style="display: none;">
+        <div class="wizard-modal-content">
+            <div class="wizard-progress-bar">
+                <div id="wizard-progress-fill" class="progress-fill" style="width: 20%;"></div>
+            </div>
+            <div id="wizard-steps-indicator" class="wizard-steps-indicator font-alt">Langkah 1 dari 5</div>
+            
+            <div class="wizard-steps-container">
+                <!-- Step 1: Welcome & Briefing -->
+                <div class="wizard-step active" data-step="1">
+                    <div class="step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <h3>Aktifkan Perisai Keamanan</h3>
+                    <p>Selamat datang di sistem manajemen keamanan Venus. Untuk mencegah kebocoran draf tulisan yang belum siap siar serta menanggulangi scam/penipuan dari pengguna tidak dikenal, Anda wajib membuat sandi pengaman.</p>
+                    <div class="wizard-buttons">
+                        <button class="btn-primary btn-next-step btn-full-width">Mulai Setup</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Set PIN -->
+                <div class="wizard-step" data-step="2" style="display: none;">
+                    <h3>Buat PIN Keamanan Anda</h3>
+                    <p>PIN ini berupa 4 digit angka rahasia yang akan digunakan setiap kali Anda mengakses dashboard admin dan draf catatan.</p>
+                    
+                    <div class="pin-display-wrapper" id="wizard-pin-display">
+                        <div class="pin-dot"></div>
+                        <div class="pin-dot"></div>
+                        <div class="pin-dot"></div>
+                        <div class="pin-dot"></div>
+                    </div>
+                    
+                    <!-- Custom Keypad for elegant aesthetic -->
+                    <div class="custom-keypad" id="wizard-keypad">
+                        <button class="key-btn" data-val="1">1</button>
+                        <button class="key-btn" data-val="2">2</button>
+                        <button class="key-btn" data-val="3">3</button>
+                        <button class="key-btn" data-val="4">4</button>
+                        <button class="key-btn" data-val="5">5</button>
+                        <button class="key-btn" data-val="6">6</button>
+                        <button class="key-btn" data-val="7">7</button>
+                        <button class="key-btn" data-val="8">8</button>
+                        <button class="key-btn" data-val="9">9</button>
+                        <button class="key-btn danger-key" data-val="clear">C</button>
+                        <button class="key-btn" data-val="0">0</button>
+                        <button class="key-btn success-key" data-val="delete">⌫</button>
+                    </div>
+                    
+                    <div class="wizard-buttons" style="margin-top: 1.5rem;">
+                        <button class="btn-secondary btn-prev-step">Kembali</button>
+                        <button id="btn-wizard-pin-next" class="btn-primary" disabled>Lanjut</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Security Question (Scam prevention key) -->
+                <div class="wizard-step" data-step="3" style="display: none;">
+                    <div class="step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    </div>
+                    <h3>Pertanyaan Keamanan</h3>
+                    <p>Pilih pertanyaan keamanan sebagai pelindung lapis kedua jika terjadi scam/phishing dari penyerang tidak dikenal.</p>
+                    
+                    <div class="form-group">
+                        <select id="wizard-question-select" class="wizard-select">
+                            <option value="first_pen">Siapa nama pena pertama Anda?</option>
+                            <option value="memorable_city">Kota mana yang menyimpan kenangan romansa terdalam?</option>
+                            <option value="favorite_poem">Karya penyair favorit Anda selain Venus?</option>
+                            <option value="childhood_street">Apa nama jalan tempat tinggal Anda saat kecil?</option>
+                        </select>
+                        <input type="text" id="wizard-answer-input" class="wizard-input" placeholder="Jawaban Anda (tidak sensitif huruf)...">
+                    </div>
+                    
+                    <div class="wizard-buttons">
+                        <button class="btn-secondary btn-prev-step">Kembali</button>
+                        <button id="btn-wizard-question-next" class="btn-primary" disabled>Lanjut</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: System Configs -->
+                <div class="wizard-step" data-step="4" style="display: none;">
+                    <div class="step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3>Konfigurasi Mitigasi</h3>
+                    <p>Atur tindakan mitigasi untuk menjaga keamanan arsip draf catatan Anda.</p>
+                    
+                    <div class="switch-group">
+                        <label class="switch-container">
+                            <input type="checkbox" id="wizard-opt-autolock" checked>
+                            <span class="switch-slider"></span>
+                            <span class="switch-label" style="font-weight: 500; font-size: 0.9rem;">Auto-Lock Sesi Admin (5 Menit)</span>
+                        </label>
+                        <p class="switch-desc">Sesi admin akan otomatis terkunci kembali ke mode Viewer jika tidak ada aktivitas.</p>
+                    </div>
+                    
+                    <div class="switch-group">
+                        <label class="switch-container">
+                            <input type="checkbox" id="wizard-opt-simulation" checked>
+                            <span class="switch-slider"></span>
+                            <span class="switch-label" style="font-weight: 500; font-size: 0.9rem;">Aktifkan Simulasi Kunjungan</span>
+                        </label>
+                        <p class="switch-desc">Menghasilkan log kunjungan tiruan secara periodik agar dashboard statistik terasa hidup.</p>
+                    </div>
+                    
+                    <div class="wizard-buttons">
+                        <button class="btn-secondary btn-prev-step">Kembali</button>
+                        <button class="btn-primary btn-next-step">Lanjut</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Finished -->
+                <div class="wizard-step" data-step="5" style="display: none;">
+                    <div class="success-lock-animation">
+                        <div class="shield-halo"></div>
+                        <svg class="success-shield-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="9 11 11 13 15 9" class="checkmark-path"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Sistem Berhasil Terproteksi</h3>
+                    <p>Protokol keamanan telah diaktifkan sepenuhnya. Semua panel draf dan data statistik kunjungan kini aman dari akses tidak dikenal.</p>
+                    <div class="wizard-buttons">
+                        <button id="btn-wizard-complete" class="btn-primary btn-full-width">Masuk Ke Dasbor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIN Verification Modal -->
+    <div id="pin-auth-modal" class="modal-overlay" aria-hidden="true" style="display: none;">
+        <div class="pin-modal-content">
+            <div class="pin-modal-header">
+                <h3 id="pin-title">Verifikasi Akses Admin</h3>
+                <button id="btn-close-pin-modal" class="drawer-close" aria-label="Tutup Verifikasi" style="position: static; margin-left: auto;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            
+            <p id="pin-modal-desc" style="margin-bottom: 1.5rem; font-size: 0.9rem;">Masukkan 4 digit PIN keamanan Anda untuk mengakses panel draf dan statistik.</p>
+            
+            <div id="lockout-warning" class="lockout-banner" style="display: none;">
+                Terlalu banyak percobaan! Silakan tunggu <span id="lockout-countdown">30</span> detik.
+            </div>
+
+            <div class="pin-display-wrapper" id="auth-pin-display">
+                <div class="pin-dot"></div>
+                <div class="pin-dot"></div>
+                <div class="pin-dot"></div>
+                <div class="pin-dot"></div>
+            </div>
+            
+            <div class="custom-keypad" id="auth-keypad">
+                <button class="key-btn" data-val="1">1</button>
+                <button class="key-btn" data-val="2">2</button>
+                <button class="key-btn" data-val="3">3</button>
+                <button class="key-btn" data-val="4">4</button>
+                <button class="key-btn" data-val="5">5</button>
+                <button class="key-btn" data-val="6">6</button>
+                <button class="key-btn" data-val="7">7</button>
+                <button class="key-btn" data-val="8">8</button>
+                <button class="key-btn" data-val="9">9</button>
+                <button class="key-btn danger-key" data-val="clear">C</button>
+                <button class="key-btn" data-val="0">0</button>
+                <button class="key-btn success-key" data-val="delete">⌫</button>
+            </div>
+            
+            <div class="pin-modal-footer" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                <button id="btn-forget-pin" class="btn-forget-text" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-family:var(--font-sans); font-size:0.8rem; transition:var(--transition-smooth);">Lupa PIN?</button>
+            </div>
+
+            <!-- Forget PIN Recovery Panel (Hidden by default) -->
+            <div id="recovery-panel" class="recovery-panel" style="display: none; margin-top: 1.5rem; text-align: left;">
+                <div class="drawer-divider" style="margin-bottom: 1rem;"></div>
+                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Verifikasi Pertanyaan Keamanan</h3>
+                <p id="recovery-question-label" class="recovery-question" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Pertanyaan: ...</p>
+                <input type="text" id="recovery-answer-input" class="wizard-input" placeholder="Masukkan jawaban Anda..." style="width: 100%; margin-bottom: 1rem;">
+                <div class="recovery-buttons" style="display: flex; gap: 1rem;">
+                    <button id="btn-submit-recovery" class="btn-primary" style="flex: 1; padding: 0.6rem;">Verifikasi</button>
+                    <button id="btn-cancel-recovery" class="btn-secondary-sm">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert System (Toast Notifications) -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
