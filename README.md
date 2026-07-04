@@ -1,2 +1,0 @@
-# Mika_Project
-Testing
